@@ -1,4 +1,4 @@
-import { redisClient } from '../utils/redis';
+import redisClient from '../utils/redis';
 import dbClient from '../utils/db';
 
 class AppController {
@@ -10,10 +10,10 @@ class AppController {
   }
 
   static async getStats(req, res) {
-    const numUsers = await dbClient.nbUsers();
-    const numFiles = await dbClient.nbFiles();
+    const users = await dbClient.nbUsers();
+    const files = await dbClient.nbFiles();
     res.set('Content-Type', 'application/json');
-    res.status(200).json({ numUsers, numFiles }).end();
+    res.status(200).json({ users, files }).end();
   }
 }
 
